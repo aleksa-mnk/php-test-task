@@ -1,16 +1,18 @@
 <?php
 
-$host = 'localhost';
-$dbname = 'people_db';
-$user = 'root';
-$password = 'root';
+const DB_HOST = 'localhost';
+const DB_NAME = 'people_db';
+const DB_USER = 'root';
+const DB_PASSWORD = 'root';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
     exit();
+} finally {
+    $pdo = null;
 }
