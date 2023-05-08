@@ -20,4 +20,13 @@ class Person
         $this->birth_city = $birth_city;
         $this->pdo = require 'db_connection.php';
     }
+
+    private function bindParams($stmt)
+    {
+        $stmt->bindParam(':first_name', $this->first_name, PDO::PARAM_STR);
+        $stmt->bindParam(':last_name', $this->last_name, PDO::PARAM_STR);
+        $stmt->bindParam(':birth_date', $this->birth_date, PDO::PARAM_STR);
+        $stmt->bindParam(':gender', $this->gender, PDO::PARAM_INT);
+        $stmt->bindParam(':birth_city', $this->birth_city, PDO::PARAM_STR);
+    }
 }
